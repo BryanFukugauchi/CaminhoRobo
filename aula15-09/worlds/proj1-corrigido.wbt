@@ -1,0 +1,201 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.5381383968916335 -0.5800060310744688 -0.6115554510493264 4.41939630403174
+  position -0.14531001889687767 -0.3418544879386226 1.9281720445907191
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 1.2 1.8
+  floorTileSize 1.2 1.8
+  floorAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "https://raw.githubusercontent.com/BryanFukugauchi/CaminhoRobo/b3ac2665113e1451504d7be4b72f77a516142098/Pista.png"
+      ]
+    }
+    roughness 1
+    metalness 0
+  }
+}
+Robot {
+  translation -0.189146 -0.471735 0.027362
+  rotation 0.14177300911156449 0.028630801840063908 0.9894850635929011 -0.7183853071795863
+  children [
+    Pose {
+      children [
+        Camera {
+          translation 0.05 0 0.025
+          rotation 0 -1 0 -5.307179586466759e-06
+          children [
+            Pose {
+              rotation 0 1 0 0
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0.508721 0.94313
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Cylinder {
+                    height 0.01
+                    radius 0.015
+                  }
+                }
+              ]
+            }
+          ]
+          width 128
+          height 128
+        }
+        Pose {
+          children [
+            DistanceSensor {
+              translation 0.055 0.018 0.02
+              rotation 0 1 0 1.5
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0.629892 0.222782
+                  }
+                  geometry Cylinder {
+                    height 0.01
+                    radius 0.01
+                  }
+                }
+              ]
+              name "DSE"
+              type "infra-red"
+              aperture 0.05
+            }
+            DistanceSensor {
+              translation 0.055 -0.018 0.02
+              rotation 0 1 0 1.5
+              children [
+                Shape {
+                  appearance PBRAppearance {
+                    baseColor 1 0.629892 0.222782
+                  }
+                  geometry Cylinder {
+                    height 0.01
+                    radius 0.01
+                  }
+                }
+              ]
+              name "DSD"
+              type "infra-red"
+              aperture 0.05
+            }
+          ]
+        }
+        DEF Corpo Pose {
+          translation 0 0 0.03
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Box {
+                size 0.1 0.1 0.05
+              }
+            }
+          ]
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position 1162.5436606598928
+            axis 0 1 0
+            anchor 0 0 0.025
+          }
+          device [
+            RotationalMotor {
+              name "motorD"
+              consumptionFactor 70
+              maxVelocity 100
+            }
+          ]
+          endPoint Solid {
+            translation -0.003844347722255719 -4.176883933737781e-10 0.00029766254011001636
+            rotation 0 -1 0 6.128806475510292
+            children [
+              DEF RodaD_Pose Pose {
+                translation 0 -0.055 0.025
+                rotation 1 0 0 1.57
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry Cylinder {
+                      height 0.01
+                      radius 0.025
+                    }
+                  }
+                ]
+              }
+            ]
+            name "nomeD0endPoint-Solid"
+            boundingObject USE RodaD_Pose
+            physics Physics {
+              density -1
+              mass 0.05
+            }
+          }
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position 610.7695730433674
+            axis 0 1 0
+            anchor 0 0 0.025
+          }
+          device [
+            RotationalMotor {
+              name "motorE"
+              consumptionFactor 70
+              maxVelocity 100
+            }
+          ]
+          endPoint Solid {
+            translation -0.024092720526764085 4.26761835305794e-10 0.01832724930246223
+            rotation 0 -1 0 4.982587060232117
+            children [
+              DEF RodaE_Pose Pose {
+                translation 0 0.055 0.025
+                rotation 1 0 0 1.57
+                children [
+                  Shape {
+                    appearance PBRAppearance {
+                    }
+                    geometry Cylinder {
+                      height 0.01
+                      radius 0.025
+                    }
+                  }
+                ]
+              }
+            ]
+            name "nomeE-endPoint-Solid"
+            boundingObject USE RodaE_Pose
+            physics Physics {
+              density -1
+              mass 0.05
+            }
+          }
+        }
+      ]
+    }
+  ]
+  boundingObject USE Corpo
+  physics Physics {
+    density -1
+    mass 0.05
+  }
+  controller "car_control"
+}
