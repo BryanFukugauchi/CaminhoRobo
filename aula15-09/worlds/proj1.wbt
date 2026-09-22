@@ -8,7 +8,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation 0.5381383968916335 -0.5800060310744688 -0.6115554510493264 4.41939630403174
-  position -0.24119320306176056 -0.5499710239840756 3.0406858344331686
+  position -0.2944984131679572 -0.665671141550048 3.6591757378516307
 }
 TexturedBackground {
 }
@@ -28,8 +28,8 @@ RectangleArena {
   }
 }
 Robot {
-  translation -0.189146 -0.471735 0.027362
-  rotation 0.003191170828258078 0.0509666132282198 0.9986952592081279 2.95398
+  translation -0.06712275508496186 0.28953364556767286 6.976865223410483e-05
+  rotation -0.05093709951499548 0.016758882739383772 0.9985612408572281 2.5061513139294083
   children [
     Pose {
       children [
@@ -111,7 +111,7 @@ Robot {
         }
         HingeJoint {
           jointParameters HingeJointParameters {
-            position 1162.5436606598928
+            position 1205.3348017330554
             axis 0 1 0
             anchor 0 0 0.025
           }
@@ -123,8 +123,8 @@ Robot {
             }
           ]
           endPoint Solid {
-            translation -0.003844347722255727 -4.176883933737781e-10 0.00029766254010995044
-            rotation 0 -1 0 6.128806475510292
+            translation 0.021518819158156788 -4.176883933737781e-10 0.012275028195298625
+            rotation 0 -1 0 1.0367772454251751
             children [
               DEF RodaD_Pose Pose {
                 translation 0 -0.055 0.025
@@ -147,11 +147,13 @@ Robot {
               density -1
               mass 0.05
             }
+            linearVelocity -0.03670054789433467 0.026955977789324372 -4.1841025290294566e-07
+            angularVelocity -1.0611148187129402 -1.4445987981580288 -0.14708700872798872
           }
         }
         HingeJoint {
           jointParameters HingeJointParameters {
-            position 610.7695730433674
+            position 655.9264022269023
             axis 0 1 0
             anchor 0 0 0.025
           }
@@ -163,8 +165,8 @@ Robot {
             }
           ]
           endPoint Solid {
-            translation -0.02409272052676423 4.2676183530580184e-10 0.018327249302462212
-            rotation 0 -1 0 4.982587060232116
+            translation -0.015454858141105596 4.267618353058032e-10 0.04465024539517409
+            rotation 0 1 0 2.475130280225275
             children [
               DEF RodaE_Pose Pose {
                 translation 0 0.055 0.025
@@ -187,6 +189,8 @@ Robot {
               density -1
               mass 0.05
             }
+            linearVelocity -0.04962914086946849 0.03645465933460927 -4.773584862569455e-07
+            angularVelocity -1.475432792157017 -2.0088169101075644 -0.14781192856425793
           }
         }
       ]
@@ -198,4 +202,6 @@ Robot {
     mass 0.05
   }
   controller "car_control"
+  linearVelocity -0.043095649720376716 0.031746543162572284 -7.916290015291676e-07
+  angularVelocity 0.004641916360011086 0.005979009490168295 -0.14631407974531288
 }
