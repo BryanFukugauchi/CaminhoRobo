@@ -3,14 +3,12 @@ Aluno: Bryan Massahiro Duran Fukugauchi - RA: 24120
 '''
 from controller import Robot
 
-# --- Programação do Robô (Webots) ---
 
 robot = Robot()
 timestep = int(robot.getBasicTimeStep())
 
 print("Iniciando motores, sensores e câmera...")
 
-# --- MOTORES ---
 motorE = robot.getDevice('motorE')
 motorD = robot.getDevice('motorD')
 
@@ -22,7 +20,6 @@ motorD.setPosition(float('inf'))
 motorE.setVelocity(0.0)
 motorD.setVelocity(0.0)
 
-# --- SENSORES DE LINHA ---
 dsd = robot.getDevice('DSD')
 dse = robot.getDevice('DSE')
 
@@ -32,7 +29,6 @@ else:
     dsd.enable(timestep)
     dse.enable(timestep)
 
-# --- CÂMERA ---
 camera = robot.getDevice('camera')
 
 if camera is None:
@@ -43,19 +39,18 @@ else:
 
 VELOCIDADE = 2.5
 VELOCIDADE_CURVA = 1.8
-LIMIAR = 700
+LIMIAR = 500
 
 ultima_direcao = 0
 
 while robot.step(timestep) != -1:
 
-    # Captura a imagem da câmera a cada ciclo da simulação
     if camera is not None:
         imagem = camera.getImage()
-        # 'imagem' agora contém os bytes da imagem (formato BGRA)
 
     ve = dse.getValue()
     vd = dsd.getValue()
+    print(f"Esquerdo: {ve:.1f} | Direito: {vd:.1f}")
 
     esquerdo_preto = ve > LIMIAR
     direito_preto = vd > LIMIAR
@@ -76,11 +71,11 @@ while robot.step(timestep) != -1:
 
     else:
         if ultima_direcao == -1:
-            motorE.setVelocity(-1.5)
-            motorD.setVelocity(2.5)
+            motorE.setVelocity(0)
+            motorD.setVelocity(1.5)
         elif ultima_direcao == 1:
-            motorE.setVelocity(2.5)
-            motorD.setVelocity(-1.5)
+            motorE.setVelocity(1.5)
+            motorD.setVelocity(0)
         else:
-            motorE.setVelocity(2.0)
-            motorD.setVelocity(2.0)
+            motorE.setVelocity(1.0)
+            motorD.setVelocity(1.0)
